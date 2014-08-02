@@ -1,5 +1,5 @@
 #Mckinley
-![Mount Mckinley](mckinley.jpeg)
+![Mount Mckinley](https://github.com/glredig/mckinley/blob/master/mckinley.jpg)
 
 ###Technology Stack
 * ruby 2.1.2
