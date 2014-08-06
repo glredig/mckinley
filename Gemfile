@@ -8,6 +8,7 @@ gem 'unicorn', '~> 4.8.3'
 gem 'rack-cors', '~> 0.2.9'
 gem 'active_model_serializers', '~> 0.8.1'
 gem 'interactor-rails', '~> 1.0.1'
+gem 'koala', '~> 1.10.0rc'
 
 group :production do
   gem 'rails_12factor', '~> 0.0.2'
