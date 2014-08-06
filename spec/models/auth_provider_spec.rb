@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AuthProvider, :type => :model do
-  let(:user) { FactoryGirl.build(:auth_provider) }
+  let(:auth_provider) { FactoryGirl.build(:auth_provider) }
 
   describe "validations" do
     it { should validate_presence_of :type }
@@ -10,6 +10,6 @@ RSpec.describe AuthProvider, :type => :model do
     it { should validate_presence_of :token }
     it { should validate_presence_of :expiration }
     it { should validate_presence_of :link }
-    it { should validate_presence_of :verified }
+    # it { should validate_inclusion_of(:verified).in_array([true, false]) }
   end
 end

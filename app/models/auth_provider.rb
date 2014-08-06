@@ -5,5 +5,5 @@ class AuthProvider < ActiveRecord::Base
   validates :token,             presence: true
   validates :expiration,        presence: true
   validates :link,              presence: true
-  validates :verified,          presence: true
+  validates :verified,          inclusion: [true, false]
 end

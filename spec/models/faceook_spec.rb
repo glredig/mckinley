@@ -14,6 +14,6 @@ RSpec.describe Facebook, type: :model do
     it { should validate_presence_of :token }
     it { should validate_presence_of :expiration }
     it { should validate_presence_of :link }
-    it { should validate_presence_of :verified }
+    # it { should validate_inclusion_of(:verified).in_array([true, false]) }
   end
 end
