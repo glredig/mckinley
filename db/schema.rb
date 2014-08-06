@@ -11,11 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806041208) do
+ActiveRecord::Schema.define(version: 20140806043425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "auth_providers", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "type",                             null: false
+    t.uuid     "user_id",                          null: false
+    t.string   "provider_user_id",                 null: false
+    t.string   "token",                            null: false
+    t.datetime "expiration",                       null: false
+    t.string   "link",                             null: false
+    t.boolean  "verified",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "auth_providers", ["token"], name: "index_auth_providers_on_token", using: :btree
+  add_index "auth_providers", ["type"], name: "index_auth_providers_on_type", using: :btree
+  add_index "auth_providers", ["user_id"], name: "index_auth_providers_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "auth_token", null: false
