@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   validates :gender,      presence: true
   validates :locale,      presence: true
   validates :birthday,    presence: true
+
+  include Authentication
 end

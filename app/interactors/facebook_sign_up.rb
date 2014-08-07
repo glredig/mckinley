@@ -21,14 +21,19 @@ class FacebookSignUp
   end
 
   def build_user_from_facebook
-    user = User.new(auth_token: 'fake_token', email: facebook_info['email'],
-                    first_name: facebook_info['first_name'], last_name: facebook_info['last_name'],
-                    gender: facebook_info['gender'], locale: facebook_info['locale'],
-                    birthday: facebook_info['birthday'])
+    user = User.new(auth_token: User.generate_authentication_token,
+                    email:      facebook_info['email'],
+                    first_name: facebook_info['first_name'],
+                    last_name:  facebook_info['last_name'],
+                    gender:     facebook_info['gender'],
+                    locale:     facebook_info['locale'],
+                    birthday:   facebook_info['birthday'])
 
-    user.build_facebook(provider_user_id: facebook_info['id'], token: token,
-                        expiration: 1.hour.from_now, link: facebook_info['link'],
-                        verified: facebook_info['verified'])
+    user.build_facebook(provider_user_id: facebook_info['id'],
+                        token:            token,
+                        expiration:       1.hour.from_now,
+                        link:             facebook_info['link'],
+                        verified:         facebook_info['verified'])
     user
   end
 
