@@ -39,16 +39,14 @@ class FacebookSignUp
 
   def assert_correct_facebook_info
     return unless facebook_info.present?
-
-    fail!(errors: ['Facebook email is required.'])       unless facebook_info['email'].present?
-    fail!(errors: ['Facebook birthday is required.'])    unless facebook_info['birthday'].present?
-    fail!(errors: ['Facebook id is required.'])          unless facebook_info['id'].present?
-    fail!(errors: ['Facebook first name is required.'])  unless facebook_info['first_name'].present?
-    fail!(errors: ['Facebook last name is required.'])   unless facebook_info['last_name'].present?
-    fail!(errors: ['Facebook gender is required.'])      unless facebook_info['gender'].present?
-    fail!(errors: ['Facebook link is required.'])        unless facebook_info['link'].present?
-    fail!(errors: ['Facebook locale is required.'])      unless facebook_info['locale'].present?
-    fail!(errors: ['Facebook verified is required.'])    if facebook_info['verified'].nil?
+    facebook_attributes = %w(email birthday id first_name last_name gender link locale)
+    facebook_attributes.each do |attribute|
+      if facebook_info[attribute].blank?
+        fail!(errors: ["Facebook #{attribute.humanize.downcase} is required."])
+        break
+      end
+    end
+    fail!(errors: ['Facebook verified is required.']) if facebook_info['verified'].nil?
   end
 
   # Facebook Information
