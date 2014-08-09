@@ -2,8 +2,8 @@ module Authentication
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def secure_compare(a,b)
-      devise_secure_compare(a,b)
+    def secure_compare(a, b)
+      devise_secure_compare(a, b)
     end
 
     def generate_authentication_token
@@ -12,7 +12,7 @@ module Authentication
 
     private
 
-    def devise_secure_compare(a,b)
+    def devise_secure_compare(a, b)
       return false if a.blank? || b.blank? || a.bytesize != b.bytesize
       l = a.unpack "C#{a.bytesize}"
       res = 0
@@ -32,4 +32,3 @@ module Authentication
     end
   end
 end
-

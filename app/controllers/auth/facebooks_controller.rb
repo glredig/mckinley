@@ -6,7 +6,6 @@ module Auth
       result = if new_user?
                  FacebookSignUp.perform(token: token_param)
                else
-                 false
                  FacebookSignIn.perform(token: token_param)
                end
 

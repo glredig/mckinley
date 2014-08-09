@@ -9,11 +9,10 @@ class Facebook < AuthProvider
   def exchange_access_token(old_access_token)
     new_token_info = oauth.exchange_access_token_info(old_access_token)
     new_token = new_token_info.fetch('access_token') do
-      raise 'FB exchange access token api missing token'
+      fail 'FB exchange access token api missing token'
     end
     update!(token: new_token, expiration: expiration_time(new_token_info))
   end
-
 
   private
 
@@ -23,7 +22,7 @@ class Facebook < AuthProvider
 
   def expiration_time(new_token_info)
     seconds_to_expiration = new_token_info.fetch('expires') do
-      raise 'FB exchange access token api missing expiration seconds'
+      fail 'FB exchange access token api missing expiration seconds'
     end
     days_to_expiration = Integer(seconds_to_expiration) / 1.day
     days_to_expiration.floor.days.from_now
