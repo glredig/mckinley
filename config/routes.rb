@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :tests, only: [:index]
+  namespace :auth do
+    resource :facebook, only: :create
+  end
 end
